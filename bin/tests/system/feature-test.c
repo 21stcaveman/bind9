@@ -158,6 +158,14 @@ main(int argc, char **argv) {
 #endif /* ifdef DLZ_FILESYSTEM */
 	}
 
+	if (strcmp(argv[1], "--with-dlz-mongodb") == 0) {
+#ifdef DLZ_MONGODB
+		return (0);
+#else
+		return (1);
+#endif
+	}
+
 	if (strcmp(argv[1], "--ipv6only=no") == 0) {
 #ifdef WIN32
 		return (0);

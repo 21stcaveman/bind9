@@ -1345,6 +1345,7 @@
 ./contrib/dlz/modules/include/dlz_list.h	X	2013,2016,2018,2019,2020
 ./contrib/dlz/modules/include/dlz_minimal.h	X	2013,2014,2018,2019,2020
 ./contrib/dlz/modules/include/dlz_pthread.h	X	2013,2014,2015,2018,2019,2020
+./contrib/dlz/modules/include/dlz_mongodb.h	X	2020
 ./contrib/dlz/modules/ldap/Makefile		X	2013,2018,2019,2020
 ./contrib/dlz/modules/ldap/dlz_ldap_dynamic.c	X	2013,2016,2018,2019,2020
 ./contrib/dlz/modules/ldap/testing/README	X	2013,2018,2019,2020
@@ -1363,6 +1364,7 @@
 ./contrib/dlz/modules/mysqldyn/testing/dlz.data	X	2014,2018,2019
 ./contrib/dlz/modules/mysqldyn/testing/dlz.schema	X	2014,2018,2019,2020
 ./contrib/dlz/modules/mysqldyn/testing/named.conf	X	2014,2018,2019
+./contrib/dlz/modules/mongodb/dlz_mongodb_mod.c	X	2020
 ./contrib/dlz/modules/perl/Makefile		X	2013,2018,2019,2020
 ./contrib/dlz/modules/perl/README		X	2013,2018,2019,2020
 ./contrib/dlz/modules/perl/dlz_perl_callback.xs	X	2013,2018,2019,2020

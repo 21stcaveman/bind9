@@ -1,0 +1,18 @@
+prefix = /usr
+libdir = $(prefix)/lib/bind9
+
+CFLAGS=-fPIC -Wall -g -I../include @MONGOC_DRIVER_CFLAGS@
+MONGODB_LIBS=@MONGOC_DRIVER_LIBS@
+
+all: dlz_mongodb_mod.so
+
+dlz_mongodb_mod.so: dlz_mongodb_mod.c
+	$(CC) $(CFLAGS) -shared -o dlz_mongodb_mod.so \
+		dlz_mongodb_mod.c $(MONGODB_LIBS)
+
+clean:
+	rm -f dlz_mongodb_mod.so *.o
+
+install: dlz_mongodb_mod.so
+	mkdir -p $(DESTDIR)$(libdir)
+	install dlz_mongodb_mod.so $(DESTDIR)$(libdir)

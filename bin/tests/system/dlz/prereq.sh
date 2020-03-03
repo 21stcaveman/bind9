@@ -16,4 +16,9 @@ if ! $FEATURETEST --with-dlz-filesystem; then
         echo_i "DLZ filesystem driver not supported"
         exit 255
 fi
+
+if ! $FEATURETEST --with-dlz-mongodb; then
+        echo_i "DLZ mongodb driver not supported"
+        exit 255
+fi
 exit 0

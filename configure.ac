@@ -98,6 +98,7 @@ AS_IF([test "$enable_developer" = "yes"],
        test "${enable_warn_error+set}" = set || enable_warn_error=yes
        test "${enable_warn_shadow+set}" = set || enable_warn_shadow=yes
        test "${with_zlib+set}" = set || with_zlib=yes
+       test "${with_dlz_mongodb+set}" = set || with_dlz_mongodb=no
        XTARGETS='${XTARGETS}'
        ])
 AC_SUBST([XTARGETS])
@@ -1710,6 +1711,19 @@ AS_IF([test "$enable_linux_caps" = "yes"],
       [AC_MSG_RESULT([no])])
 AC_SUBST([LIBCAP_LIBS])
 
+AC_MSG_CHECKING([whether to build MongoDB DLZ Module...])
+AS_CASE([$with_dlz_mongodb],
+	[no],[AC_MSG_RESULT([no])],
+	[yes],[
+		AC_MSG_RESULT([yes])
+		PKG_CHECK_MODULES([MONGOC_DRIVER], [libmongoc-1.0], [
+			AC_CONFIG_FILES([contrib/dlz/modules/mongodb/Makefile])
+			AC_MSG_RESULT([will build dlz_mongodb_mod with cflags=$MONGOC_DRIVER_CFLAGS and libs=$MONGOC_DRIVER_LIBS])
+		])
+	],
+	[AC_MSG_RESULT([no])]
+)
+
 AC_CHECK_HEADERS(sys/un.h,
 ISC_PLATFORM_HAVESYSUNH="#define ISC_PLATFORM_HAVESYSUNH 1"
 ,
@@ -2973,8 +2987,9 @@ report() {
 	echo "        Filesystem (--with-dlz-filesystem)"
     test "no" = "$use_dlz_stub" || \
 	echo "        Stub (--with-dlz-stub)"
-    test "$use_dlz_bdb $use_dlz_ldap $use_dlz_mysql $use_dlz_odbc $use_dlz_postgres $use_dlz_filesystem $use_dlz_stub" = "no no no no no no no" && echo "        None"
-
+	test "no" = "$use_dlz_mongodb" || \
+	echo "        MongoDB (--with-dlz-mongodb)"
+    test "$use_dlz_bdb $use_dlz_ldap $use_dlz_mysql $use_dlz_odbc $use_dlz_postgres $use_dlz_filesystem $use_dlz_stub $use_dlz_mongodb" = "no no no no no no no no" && echo "        None"
     echo "-------------------------------------------------------------------------------"
 
     echo "Features disabled or unavailable on this platform:"
